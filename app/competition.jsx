@@ -14,7 +14,7 @@ export default function Competition() {
   //   location: 'Pyeongchang, Gangwon-do, Korea',
   //   id
   // })))
-  const { competition: comps } = useSelector(({ signup }) => signup.details);
+  const { competitions: comps } = useSelector(({ signup }) => signup);
 
   const [focus, setFocus] = useState(-1);
 

@@ -7,6 +7,7 @@ import Constants from "expo-constants";
 
 import { Provider } from 'react-redux';
 import store from '../store/index';
+import { StyleSheet, TextInput } from 'react-native';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -48,7 +49,12 @@ function RootLayout() {
         />
         <Stack.Screen 
           name="competition" 
-          options={{ title: 'Competition', presentation: 'modal' }}
+          options={{
+            title: 'Competition', presentation: 'modal',
+            headerTitle: (props) => (
+              <TextInput style={styles.input} placeholder='Search' />
+            )
+          }}
         />
         <Stack.Screen 
           name="welcome" 
@@ -66,3 +72,15 @@ if (Constants.expoConfig.extra.storybookEnabled === "true") {
 }
 
 export default AppEntryPoint;
+
+const styles = StyleSheet.create({
+  input: {
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 36,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#F9FAFB',
+    width: 250
+  },
+})

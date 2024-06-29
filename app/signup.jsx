@@ -5,13 +5,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Fontisto } from '@expo/vector-icons';
 
 import { useSelector, useDispatch } from "react-redux";
+import { signupActions } from "../store";
 
 import Button from "../components/button";
-import signup from "../store/signup";
 
 export default function Signup() {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const [privacy, setPrivacy] = useState(false);
 
   const dispatch = useDispatch();
   const { competition } = useSelector(({ signup }) => signup.details);
@@ -22,10 +23,14 @@ export default function Signup() {
       [key]: value,
     }))
   }
+  const submit = () => {
+    dispatch(signupActions.updateDetails(form));
+    router.push('/welcome');
+  }
   const validateForm = () => {
     let found = false;
     setErrors({});
-    if (competition) {
+    if (!competition) {
       found = true;
       setErrors(prev => ({
         ...prev, competition: 'You must pick a competition to register'
@@ -71,11 +76,11 @@ export default function Signup() {
       <ScrollView style={{ paddingHorizontal: 24, height: '100%', }}>
         <View style={{ gap: 8 }}>
           <Pressable style={styles.input} onPress={() => router.push('/competition')}>
-            <Text>{ competition? }</Text>
+            <Text>{ competition?.name || 'Competition to sign up * ' }</Text>
           </Pressable>
-          <Text style={styles.errorText}>
-            You must pick a competition to register
-          </Text>
+          {errors.competition ? <Text style={styles.errorText}>
+            {errors.competition}
+          </Text> : ''}
           <TextInput
             style={styles.input}
             inputMode="email"
@@ -130,13 +135,17 @@ export default function Signup() {
           </Text>: ''}
         </View>
         <View style={{ paddingVertical: 48, gap: 24 }}>
-          <View style={styles.terms}>
-            <Fontisto name="checkbox-passive" size={24} color="#D3D8FF" />
+          <Pressable style={styles.terms} onPress={() => setPrivacy(!privacy)}>
+            {
+              privacy ?
+              <Fontisto name="checkbox-active" size={24} color="#D3D8FF" /> :
+                <Fontisto name="checkbox-passive" size={24} color="#D3D8FF" />
+            }
             <Text style={styles.termsText}>
               By signing up, I agree to Soo and Carrot's Terms & Conditions and Privacy Policy.
             </Text>
-          </View>
-          <Button onPress={() => validateForm() && router.push('/welcome')}>Sign Up</Button>
+          </Pressable>
+          <Button onPress={() => validateForm() && submit()}>Sign Up</Button>
         </View>
       </ScrollView>
     </SafeAreaView>
