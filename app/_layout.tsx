@@ -5,9 +5,11 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 import Constants from "expo-constants";
 
+import { Feather } from '@expo/vector-icons';
+
 import { Provider } from 'react-redux';
 import store from '../store/index';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -52,7 +54,10 @@ function RootLayout() {
           options={{
             title: 'Competition', presentation: 'modal',
             headerTitle: (props) => (
-              <TextInput style={styles.input} placeholder='Search' />
+              <View style={styles.inputCont}>
+                <TextInput style={styles.input} placeholder='Search' />
+                <Feather name="search" size={24} color="#101828" />
+              </View>
             )
           }}
         />
@@ -74,7 +79,7 @@ if (Constants.expoConfig.extra.storybookEnabled === "true") {
 export default AppEntryPoint;
 
 const styles = StyleSheet.create({
-  input: {
+  inputCont: {
     paddingVertical: 14,
     paddingHorizontal: 16,
     borderRadius: 36,
@@ -82,5 +87,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#F9FAFB',
     width: 250
+  },
+  input: {
+    flexGrow: 1,
   },
 })

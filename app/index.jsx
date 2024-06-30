@@ -27,7 +27,7 @@ export default function Home() {
           </Text>
         </View>
         <LinearGradient
-          colors={['transparent', '#161718']}
+          colors={['transparent', '#161718', 'black']}
           style={styles.bottomBox}>
           <Button
             type="primary"
