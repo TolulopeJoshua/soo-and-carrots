@@ -105,6 +105,7 @@ export default function Signup() {
           )}
           <Input
             inputMode="email"
+            placeholder="Email"
             value={form.email}
             onChangeText={(e) => onChangeText("email", e)}
           />
@@ -117,12 +118,14 @@ export default function Signup() {
             <Input
               secureTextEntry={password}
               value={form.password}
+              placeholder="Password"
               onChangeText={(e) => onChangeText("password", e)}
               icon={passwordIcon}
             />
             <Input
               secureTextEntry={password}
               value={form.confirmPassword}
+              placeholder="Confirm Password"
               onChangeText={(e) => onChangeText("confirmPassword", e)}
               icon={passwordIcon}
             />
@@ -160,7 +163,7 @@ export default function Signup() {
             ""
           )}
         </View>
-        <View style={{ paddingVertical: 48, gap: 24 }}>
+        <View style={{ paddingVertical: 64, gap: 24 }}>
           <Pressable style={styles.terms} onPress={() => setPrivacy(!privacy)}>
             {privacy ? (
               <Fontisto name="checkbox-active" size={24} color="#D3D8FF" />

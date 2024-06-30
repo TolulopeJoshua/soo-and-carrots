@@ -17,13 +17,14 @@ export const unstable_settings = {
   initialRouteName: '/',
 };
 
-SplashScreen.preventAutoHideAsync();
 
 function RootLayout() {
   const [loaded, error] = useFonts({
     ...FontAwesome.font,
   });
-
+  
+  SplashScreen.preventAutoHideAsync();
+  
   useEffect(() => {
     if (error) throw error;
   }, [error]);
