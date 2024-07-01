@@ -19,25 +19,25 @@ export const unstable_settings = {
 
 
 function RootLayout() {
-  const [loaded, error] = useFonts({
-    ...FontAwesome.font,
-  });
+  // const [loaded, error] = useFonts({
+  //   ...FontAwesome.font,
+  // });
   
-  SplashScreen.preventAutoHideAsync();
-  
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
+  // SplashScreen.preventAutoHideAsync();
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+  // useEffect(() => {
+  //   if (error) throw error;
+  // }, [error]);
 
-  if (!loaded) {
-    return null;
-  }
+  // useEffect(() => {
+  //   if (loaded) {
+  //     SplashScreen.hideAsync();
+  //   }
+  // }, [loaded]);
+
+  // if (!loaded) {
+  //   return null;
+  // }
 
   return (
     <Provider store={store}>
